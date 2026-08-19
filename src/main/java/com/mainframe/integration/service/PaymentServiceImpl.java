@@ -23,6 +23,6 @@ public class PaymentServiceImpl implements PaymentService {
         System.out.println("Currency: " +request.getCurrency());
 
         String transactionId = "TXN-" + UUID.randomUUID();
-        return new PaymentResponse(transactionId, "SUCCESS");
+        return new PaymentResponse(transactionId, "PAYMENT_SUCCESS");
     }
 }
