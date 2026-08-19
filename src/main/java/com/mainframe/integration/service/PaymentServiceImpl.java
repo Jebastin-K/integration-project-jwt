@@ -13,8 +13,14 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentResponse processPayment(PaymentRequest request) {
 
+        String transactionId = "TXN-" + UUID.randomUUID();
+
         if (request.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
             return new PaymentResponse("TXN10001", "REJECTED");
+        }
+
+        if (request.getAmount().compareTo(new BigDecimal("100000")) > 0 ) {
+            return new PaymentResponse(transactionId,"LIMIT_EXCEEDED");
         }
 
         System.out.println("Customer: " + request.getCustomerId());
@@ -22,7 +28,6 @@ public class PaymentServiceImpl implements PaymentService {
         System.out.println("Amount: " + request.getAmount());
         System.out.println("Currency: " +request.getCurrency());
 
-        String transactionId = "TXN-" + UUID.randomUUID();
         return new PaymentResponse(transactionId, "PAYMENT_SUCCESS");
     }
 }
