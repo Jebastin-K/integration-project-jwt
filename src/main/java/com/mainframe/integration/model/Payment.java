@@ -1,31 +1,32 @@
 package com.mainframe.integration.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.math.BigDecimal;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 
+@Entity
+public class Payment {
 
-public class PaymentRequest {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @NotBlank
     private String customerId;
-
-    @NotBlank
     private String accountNumber;
-
-    @NotNull
-    @Positive
     private BigDecimal amount;
-
-    @NotBlank
     private String currency;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(String customerId){
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
@@ -45,11 +46,12 @@ public class PaymentRequest {
         this.amount = amount;
     }
 
-    public String getCurrency(){
+    public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency){
+    public void setCurrency(String currency) {
         this.currency = currency;
     }
+
 }
